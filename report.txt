@@ -1,18 +1,18 @@
-Goal                    Count     Percent
-both blue and both odd  3         4.55%
-sum > 8 and only even   5         7.58%
-sum <= 3                5         7.58%
-same value              6         9.09%
-blue odd and red even   9         13.64%
-sum <= 4                10        15.15%
-sum >= 10               10        15.15%
-sum = 7                 12        18.18%
-both even               15        22.73%
-both red                15        22.73%
-sum >= 9                18        27.27%
-same color              30        45.45%
-both odd or both even   30        45.45%
-6 <= sum <= 8           30        45.45%
-one odd and one even    36        54.55%
-not same color          36        54.55%
-not same number         60        90.91%
+Goal                    Count  Percent
+both blue and both odd  3      4.55%
+sum > 8 and only even   5      7.58%
+sum <= 3                5      7.58%
+same value              6      9.09%
+blue odd and red even   9      13.64%
+sum <= 4                10     15.15%
+sum >= 10               10     15.15%
+sum = 7                 12     18.18%
+both even               15     22.73%
+both red                15     22.73%
+sum >= 9                18     27.27%
+same color              30     45.45%
+both odd or both even   30     45.45%
+6 <= sum <= 8           30     45.45%
+one odd and one even    36     54.55%
+not same color          36     54.55%
+not same number         60     90.91%

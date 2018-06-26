@@ -163,7 +163,7 @@ function makeReport(rollUp, pairsCount) {
     var keys = Object.keys(rollUpCopy),
         spacer = 2,
         widthCol1 = Math.max(headers[0].length, ...keys.map(key => key.length)) + spacer,
-        widthCol2 = keys[1].length + spacer
+        widthCol2 = headers[1].length + spacer
     //turn into 2d array and sort
     arr = keys.reduce((arr, key) => {
             arr.push([key, rollUpCopy[key]]);
