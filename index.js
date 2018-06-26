@@ -32,8 +32,7 @@ both the same number
 */
 
 
-var tests = [
-    {
+var tests = [{
         name: 'sum >= 10',
         f: (c1, c2) => sum(c1, c2) >= 10
     },
@@ -77,41 +76,41 @@ var tests = [
         name: 'both odd or both even',
         f: (c1, c2) => {
             var c1IsEven = c1.value % 2 === 0,
-             c2IsEven = c2.value % 2 === 0;
+                c2IsEven = c2.value % 2 === 0;
 
             return (c1IsEven && c2IsEven) || (!c1IsEven && !c2IsEven);
         }
     },
     {
         name: 'not same number',
-        f: (c1, c2) =>  c1.value !== c2.value
+        f: (c1, c2) => c1.value !== c2.value
     },
     {
         name: '6 <= sum <= 8',
-        f: (c1, c2) =>  {
+        f: (c1, c2) => {
             var sumV = sum(c1, c2);
             return sumV >= 6 && sumV <= 8;
         }
     },
     {
         name: 'one odd and one even',
-        f: (c1, c2) =>  (c1.value % 2 === 0) !== (c2.value % 2 === 0)
+        f: (c1, c2) => (c1.value % 2 === 0) !== (c2.value % 2 === 0)
     },
     {
         name: 'both blue and both odd',
-        f: (c1, c2) =>  c1.value % 2 === 1 && c2.value % 2 === 1 && c1.color === "blue" && c2.color === "blue"
+        f: (c1, c2) => c1.value % 2 === 1 && c2.value % 2 === 1 && c1.color === "blue" && c2.color === "blue"
     },
     {
         name: 'blue odd and red even',
         f: (c1, c2) => {
-            var v1 = (c1.value % 2 === 1 && c1.color === "blue") && (c2.value % 2 === 0 && c2.color === "red"), 
-            v2 = (c2.value % 2 === 1 && c2.color === "blue") && (c1.value % 2 === 0 && c1.color === "red") 
+            var v1 = (c1.value % 2 === 1 && c1.color === "blue") && (c2.value % 2 === 0 && c2.color === "red"),
+                v2 = (c2.value % 2 === 1 && c2.color === "blue") && (c1.value % 2 === 0 && c1.color === "red")
             return v1 || v2;
         }
     },
     {
         name: 'sum > 8 and only even',
-        f: (c1, c2) =>  c1.value % 2 === 0 && c2.value % 2 === 0 && sum(c1,c2) > 8
+        f: (c1, c2) => c1.value % 2 === 0 && c2.value % 2 === 0 && sum(c1, c2) > 8
     },
 ]
 /* 
@@ -142,48 +141,53 @@ fs.writeFileSync(`data.csv`, csvOut, 'utf8');
 
 //rollup the sums
 //make the lists
-var rollUp = tests.reduce((acc,test)=>{
+var rollUp = tests.reduce((acc, test) => {
     acc[test.name] = 0;
     return acc;
-},{})
+}, {})
 //sum them up
-rollUp = pairsWithTests.reduce((rollUp,pair)=>{
+rollUp = pairsWithTests.reduce((rollUp, pair) => {
     var key;
 
-    for(key in rollUp){
+    for (key in rollUp) {
         rollUp[key] += pair[key];
     }
 
     return rollUp;
-},rollUp)
+}, rollUp)
 
-function makeReport(rollUp){
-//how big is the first column
-    var rollUpCopy = Object.assign({},rollUp);
-    var headers = ['Goal','Number of pairs that work'];
+function makeReport(rollUp, pairsCount) {
+    //how big is the first column
+    var rollUpCopy = Object.assign({}, rollUp);
+    var headers = ['Goal', 'Count', 'Percent'];
     var keys = Object.keys(rollUpCopy),
-    widthCol1 = Math.max(headers[0].length ,...keys.map(key=>key.length)) + 2,
+        spacer = 2,
+        widthCol1 = Math.max(headers[0].length, ...keys.map(key => key.length)) + spacer,
+        widthCol2 = keys[1].length + spacer
     //turn into 2d array and sort
-    arr = keys.reduce((arr, key)=>{
-        arr.push([key, rollUpCopy[key]]);
-        return arr;
-    },[])
-    .sort((a,b)=>{
-        return a[1] - b[1];
-    });
-    
+    arr = keys.reduce((arr, key) => {
+            arr.push([key, rollUpCopy[key]]);
+            return arr;
+        }, [])
+        .sort((a, b) => {
+            return a[1] - b[1];
+        });
+
     //add headers
     arr.unshift(headers)
-    
-    textOut = arr.reduce((textOut, stat)=>{
-        textOut += stat[0].padEnd(widthCol1) + stat[1] + '\n';
+
+    textOut = arr.reduce((textOut, stat) => {
+        var percent = stat[1] / pairsCount * 100;
+        textOut += stat[0].padEnd(widthCol1) +
+            stat[1].toString().padEnd(widthCol2) +
+            (isNaN(percent) ? stat[2] : percent.toFixed(2) + '%') + 
+            '\n';
         return textOut;
-    },'');;
+    }, '');;
 
     return textOut;
 }
-var report = makeReport(rollUp);
+var report = makeReport(rollUp, pairsWithTests.length);
 console.log();
 console.log(report);
 fs.writeFileSync(`report.txt`, report, 'utf8');
-
