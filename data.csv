@@ -1,4 +1,4 @@
-c1,c2,sum <= 10,sum <= 4,sum <= 9,sum <= 3,sum = 7,both red,both even,same value,not same color,same color,both odd or both even,not same number,6 <= sum <= 8,one odd and one even,both blue and both odd,blue odd and red even,sum > 8 and only even
+c1,c2,sum >= 10,sum <= 4,sum >= 9,sum <= 3,sum = 7,both red,both even,same value,not same color,same color,both odd or both even,not same number,6 <= sum <= 8,one odd and one even,both blue and both odd,blue odd and red even,sum > 8 and only even
 1r,2r,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0
 1r,3r,0,1,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0
 2r,3r,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0

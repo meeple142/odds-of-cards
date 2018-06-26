@@ -34,7 +34,7 @@ both the same number
 
 var tests = [
     {
-        name: 'sum <= 10',
+        name: 'sum >= 10',
         f: (c1, c2) => sum(c1, c2) >= 10
     },
     {
@@ -42,7 +42,7 @@ var tests = [
         f: (c1, c2) => sum(c1, c2) <= 4
     },
     {
-        name: 'sum <= 9',
+        name: 'sum >= 9',
         f: (c1, c2) => sum(c1, c2) >= 9
     },
     {
@@ -138,6 +138,7 @@ var pairsWithTests = pairs.map(pair => {
 var csvOut = dsv.csvFormat(pairsWithTests);
 //console.log(csvOut);
 //fs.writeFileSync(`csvOut-${Date.now()}.csv`, csvOut, 'utf8');
+fs.writeFileSync(`data.csv`, csvOut, 'utf8');
 
 //rollup the sums
 //make the lists
