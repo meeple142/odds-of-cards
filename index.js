@@ -136,8 +136,8 @@ var pairsWithTests = pairs.map(pair => {
     }, out);
 })
 var csvOut = dsv.csvFormat(pairsWithTests);
-console.log(csvOut);
-fs.writeFileSync(`csvOut-${Date.now()}.csv`, csvOut, 'utf8');
+//console.log(csvOut);
+//fs.writeFileSync(`csvOut-${Date.now()}.csv`, csvOut, 'utf8');
 
 //rollup the sums
 //make the lists
@@ -181,7 +181,8 @@ function makeReport(rollUp){
 
     return textOut;
 }
+var report = makeReport(rollUp);
 console.log();
-console.log(makeReport(rollUp));
-
+console.log(report);
+fs.writeFileSync(`report.txt`, report, 'utf8');
 

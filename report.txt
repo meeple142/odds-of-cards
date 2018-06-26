@@ -1,15 +1,18 @@
-goal                    number of pairs that work
+Goal                    Number of pairs that work
+both blue and both odd  3
+sum > 8 and only even   5
 sum <= 3                5
 same value              6
-sum <= 10               10
+blue odd and red even   9
 sum <= 4                10
+sum <= 10               10
 sum = 7                 12
-both red                15
 both even               15
+both red                15
 sum <= 9                18
 same color              30
 both odd or both even   30
 6 <= sum <= 8           30
-not same color          36
 one odd and one even    36
+not same color          36
 not same number         60
